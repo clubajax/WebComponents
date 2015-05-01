@@ -1,0 +1,25 @@
+{
+  "name": "WebComponents",
+  "version": "0.0.1",
+  "homepage": "https://github.com/clubajax/",
+  "authors": [
+    "Mike Wilcox <mwilcox@paycor.com>"
+  ],
+  "description": "HTML5 Web Components demo",
+  "main": "index",
+  "keywords": [
+    "polymer",
+    "web components"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5"
+  }
+}

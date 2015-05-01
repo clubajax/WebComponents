@@ -1,0 +1,40 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="layout-footer">
+    <template>
+        <style>
+            :host {
+                background: #333;
+                color: #fff;
+                flex: 0;
+                flex-basis: 25px;
+                line-height: 2.3;
+            }
+            .wrap{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+            .left{
+                padding-left: 5px;
+            }
+            .right{
+                padding-right: 5px;
+            }
+            a{
+                color: #fff;
+            }
+        </style>
+
+        <div class="wrap">
+            <div class="left">
+                <content></content>
+            </div>
+        </div>
+
+
+    </template>
+    <script>
+        Polymer({});
+    </script>
+</polymer-element>
