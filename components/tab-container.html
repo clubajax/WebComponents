@@ -1,0 +1,31 @@
+<polymer-element name="tab-container">
+    <template>
+        <style>
+            :host {
+                display: block;
+                position: absolute;
+                background: yellow;
+                height: auto;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+            :host menu{
+                margin: 0;
+                padding: 0;
+                background: #333;
+            }
+        </style>
+
+        <menu>
+            <content select="tab-button"></content>
+        </menu>
+        <section>
+            <content select="tab-pane"></content>
+        </section>
+    </template>
+    <script>
+        Polymer({});
+    </script>
+</polymer-element>

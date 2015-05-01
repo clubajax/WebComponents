@@ -16,6 +16,10 @@
     <link rel="import" href="/components/layout-footer.html">
     <link rel="import" href="/components/layout-column.html">
 
+    <link rel="import" href="/components/tab-container.html">
+    <link rel="import" href="/components/tab-button.html">
+    <link rel="import" href="/components/tab-pane.html">
+
 
     <link rel="import" href="/components/hello-world.html">
 
@@ -30,7 +34,14 @@
             <hello-world>and goodbye.</hello-world>
         </layout-column>
         <layout-column>
-
+            <tab-container>
+                <tab-button>Tab 1</tab-button>
+                <tab-button>Tab 2</tab-button>
+                <tab-button>Tab 3</tab-button>
+                <tab-pane>tab 1 content goes here</tab-pane>
+                <tab-pane>tab 2 content goes here</tab-pane>
+                <tab-pane>tab 3 content goes here</tab-pane>
+            </tab-container>
         </layout-column>
 
     </layout-body>
