@@ -18,20 +18,34 @@
         </style>
 
         <content></content>
-        
     </template>
     <script>
-        Polymer({
-            select: function (selected) {
-                if(selected){
-                    this.classList.add('selected');
-                }else{
-                    this.classList.remove('selected');
+        (function () {
+            var dom = window.dom;
+
+            Polymer({
+                select: function (selected) {
+                    if(selected){
+                        this.classList.add('selected');
+                        this.resize();
+                    }else{
+                        this.classList.remove('selected');
+                    }
+                },
+                resize: function () {
+                    console.log('nodes', this.children);
+                    var i, box = dom.box(this);
+                    for(i = 0; i < this.children.length; i++){
+                        if(this.children[i].resize){
+                            this.children[i].resize(box);
+                        }
+                    }
+                },
+                setTop: function (height) {
+                    // TODO: replace with flex-box
+                    this.style.top = height + 'px';
                 }
-            },
-            setTop: function (height) {
-                this.style.top = height + 'px';
-            }
-        });
+            });
+        }());
     </script>
 </polymer-element>

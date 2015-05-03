@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="./grid-selection.css">
+<polymer-element name="grid-selection" hidden>
+    <script>
+        (function () {
+            var
+                on = window.on,
+                dom = window.dom;
+
+            Polymer({
+                setGrid: function (grid) {
+                    this.grid = grid;
+                    this.clickHandle = on(this.grid, 'row-click', this.select.bind(this));
+                },
+                select: function(event){
+                    if(typeof event.detail.index !== 'number'){
+                        console.warn('Failed to select numeric row index of', event.index);
+                        return;
+                    }
+                    var table = this.grid.$.table;
+                    if(!table){
+                        console.warn('Table not ready to select row');
+                        return;
+                    }
+                    var
+                        // row[0] is the header
+                        row = table.rows[event.detail.index + 1],
+                        item = event.detail.item,
+                        emitEvent = {
+                            item:item,
+                            index: event.detail.index,
+                            row: row
+                        };
+
+                    if(event.detail.cell){
+                        emitEvent.cell = event.detail.cell;
+                        emitEvent.field = event.detail.cell.getAttribute('data-field');
+                    }
+
+                    if(this.currentRow){
+                        dom.classList.remove(this.currentRow, 'selected');
+                    }
+
+                    this.currentRow = row;
+                    dom.classList.add(this.currentRow, 'selected');
+
+                    this.grid.fire('select-row', emitEvent);
+                }
+            });
+        }());
+    </script>
+</polymer-element>

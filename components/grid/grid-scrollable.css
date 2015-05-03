@@ -1,0 +1,37 @@
+grid-base.scrollable{
+    position: relative;
+}
+grid-base.scrollable::shadow table{
+    box-sizing: content-box;
+    overflow: auto;
+    display: block;
+}
+grid-base.scrollable::shadow table thead,
+grid-base.scrollable::shadow table tbody{
+    display: block;
+}
+grid-base.scrollable::shadow table thead{
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    top: 2px;
+}
+
+grid-base.scrollable::shadow table th{
+    position: relative;
+}
+grid-base.scrollable::shadow table th.desc:after{
+
+}
+grid-base.scrollable::shadow table th.asc:after{
+    transform: rotate(180deg);
+}
+grid-base.scrollable::shadow table th.desc:after,
+grid-base.scrollable::shadow table th.asc:after{
+    content: '\25B2';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 10px;
+}

@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Resin</title>
+    <title>Club AJAX Web Components</title>
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
@@ -12,6 +12,7 @@
 
     <script src="../lib/on.js"></script>
     <script src="../lib/dom.js"></script>
+    <script src="../lib/xhr.js"></script>
 
     <link rel="import" href="/bower_components/polymer/polymer.html">
 
@@ -23,6 +24,15 @@
     <link rel="import" href="/components/tab-container.html">
     <link rel="import" href="/components/tab-button.html">
     <link rel="import" href="/components/tab-pane.html">
+
+    <link rel="import" href="/components/grid/grid-pagination.html">
+    <link rel="import" href="/components/grid/grid-scrollable.html">
+    <link rel="import" href="/components/grid/grid-sortable.html">
+    <link rel="import" href="/components/grid/grid-click-handler.html">
+    <link rel="import" href="/components/grid/grid-store.html">
+    <link rel="import" href="/components/grid/grid-selection.html">
+
+    <link rel="import" href="/components/grid/grid-base.html">
 
 
     <link rel="import" href="/components/hello-world.html">
@@ -40,8 +50,8 @@
         <layout-column>
             <tab-container>
                 <tab-button>Tab 1</tab-button>
-                <tab-button class="selected foo bar">Tab 2</tab-button>
-                <tab-button>Tab 3</tab-button>
+                <tab-button class="selected">Tab 2</tab-button>
+                <tab-button >Tab 3</tab-button>
                 <tab-pane>tab 1 content goes here</tab-pane>
                 <tab-pane>
                     <h3>Today, Tesla introduces Tesla Energy, a suite of batteries for homes, businesses, and utilities fostering a clean energy ecosystem and helping wean the world off fossil fuels.</h3>
@@ -52,7 +62,16 @@
                     <p>Powerwall is available in 10kWh, optimized for backup applications or 7kWh optimized for daily use applications. Both can be connected with solar or grid and both can provide backup power. The 10kWh Powerwall is optimized to provide backup when the grid goes down, providing power for your home when you need it most. When paired with solar power, the 7kWh Powerwall can be used in daily cycling to extend the environmental and cost benefits of solar into the night when sunlight is unavailable.</p>
                     <p>Tesla’s selling price to installers is $3500 for 10kWh and $3000 for 7kWh. (Price excludes inverter and installation.) Deliveries begin in late Summer.</p>
                 </tab-pane>
-                <tab-pane>tab 3 content goes here</tab-pane>
+                <tab-pane>
+                    <grid-base>
+                        <grid-store url="/data/gridTestData.json"></grid-store>
+                        <grid-click-handler></grid-click-handler>
+                        <grid-pagination></grid-pagination>
+                        <grid-scrollable></grid-scrollable>
+                        <grid-sortable></grid-sortable>
+                        <grid-selection></grid-selection>
+                    </grid-base>
+                </tab-pane>
             </tab-container>
         </layout-column>
 
