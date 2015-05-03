@@ -4,7 +4,7 @@
             :host {
                 display: block;
                 position: absolute;
-                background: yellow;
+                background: #fff;
                 height: auto;
                 top: 0;
                 left: 0;
@@ -14,11 +14,11 @@
             :host menu{
                 margin: 0;
                 padding: 0;
-                background: #333;
+                background: #666;
             }
         </style>
 
-        <menu>
+        <menu id="menu">
             <content id="btnNodes" select="tab-button"></content>
         </menu>
         <section>
@@ -78,6 +78,12 @@
                 },
 
                 domReady: function () {
+                    var i, menuHeight = dom.box(this.$.menu).height;
+                    for(i = 0; i < this.paneNodes.length; i++){
+                        this.paneNodes[i].setTop(menuHeight);
+                    }
+
+
                     this.onSelelected(this.btnNodes[this.selectedIndex]);
                 },
 

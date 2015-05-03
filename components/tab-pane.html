@@ -3,10 +3,14 @@
         <style>
             :host {
                 position: absolute;
-                background: #8c96c7;
+                top: 20px;
+                bottom: 0;
+                right: 0;
+                left: 0;
                 height: auto;
                 padding: 5px;
                 display: none;
+                overflow-y: auto;
             }
             :host(.selected){
                 display: block;
@@ -24,6 +28,9 @@
                 }else{
                     this.classList.remove('selected');
                 }
+            },
+            setTop: function (height) {
+                this.style.top = height + 'px';
             }
         });
     </script>
