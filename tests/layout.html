@@ -6,8 +6,12 @@
     <title>Resin</title>
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
     <link href="../styles/fontIcons/style.css" rel="stylesheet">
     <link href="../styles/page.css" rel="stylesheet">
+
+    <script src="../lib/on.js"></script>
+    <script src="../lib/dom.js"></script>
 
     <link rel="import" href="/bower_components/polymer/polymer.html">
 
@@ -36,7 +40,7 @@
         <layout-column>
             <tab-container>
                 <tab-button>Tab 1</tab-button>
-                <tab-button>Tab 2</tab-button>
+                <tab-button class="selected foo bar">Tab 2</tab-button>
                 <tab-button>Tab 3</tab-button>
                 <tab-pane>tab 1 content goes here</tab-pane>
                 <tab-pane>tab 2 content goes here</tab-pane>

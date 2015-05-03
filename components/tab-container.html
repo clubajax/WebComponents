@@ -19,13 +19,84 @@
         </style>
 
         <menu>
-            <content select="tab-button"></content>
+            <content id="btnNodes" select="tab-button"></content>
         </menu>
         <section>
-            <content select="tab-pane"></content>
+            <content id="paneNodes" select="tab-pane"></content>
         </section>
     </template>
     <script>
-        Polymer({});
+        (function(){
+
+            var
+                on = window.on,
+                dom = window.dom;
+
+            function getInitialSelected(btnNodes, paneNodes){
+                var i;
+                for(i = 0; i < btnNodes.length; i++){
+                    if(btnNodes[i].classList.contains('selected')){
+                        return i;
+                    }
+                    if(paneNodes[i].classList.contains('selected')){
+                        return i;
+                    }
+                }
+                return 0;
+            }
+
+            function getSelectedIndex(node, nodes){
+                for(var i = 0; i < nodes.length; i++){
+                    if(nodes[i] === node){
+                        return i;
+                    }
+                }
+                return 0;
+            }
+
+            Polymer({
+                attached: function () {
+                    var
+                        i,
+                        paneNodes = Array.prototype.slice.call(this.$.paneNodes.getDistributedNodes()),
+                        btnNodes = Array.prototype.slice.call(this.$.btnNodes.getDistributedNodes()),
+                        selectedIndex = getInitialSelected(btnNodes, paneNodes);
+                    console.log('btnNodes', btnNodes);
+                    console.log('paneNodes', paneNodes);
+                    console.log('selected', selectedIndex);
+
+                    this.btnHandles = [];
+                    for(i = 0; i < btnNodes.length; i++){
+                        this.btnHandles.push(on(btnNodes[i], 'selected', this.onSelelected.bind(this)));
+                    }
+
+                    this.paneNodes = paneNodes;
+                    this.btnNodes = btnNodes;
+                    this.selectedIndex = selectedIndex;
+
+
+                },
+
+                domReady: function () {
+                    this.onSelelected(this.btnNodes[this.selectedIndex]);
+                },
+
+                onSelelected: function (event) {
+                    var
+                        node = event.target || event,
+                        selectedIndex = getSelectedIndex(node, this.btnNodes);
+
+                    if(selectedIndex === this.selectedIndex){
+                        console.log('same', selectedIndex , this.selectedIndex);
+                        //return;
+                    }
+                    this.paneNodes[this.selectedIndex].select(false);
+                    this.btnNodes[this.selectedIndex].select(false);
+                    this.selectedIndex = selectedIndex;
+                    this.paneNodes[this.selectedIndex].select(true);
+                    this.btnNodes[this.selectedIndex].select(true);
+                }
+            });
+        }());
     </script>
 </polymer-element>

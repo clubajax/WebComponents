@@ -8,6 +8,14 @@
                 padding: 5px;
                 margin-left: 2px;
                 margin-top: 3px;
+                cursor: pointer;
+            }
+            :host(:hover){
+                background: #ff3442;
+                color: #fff;
+            }
+            :host(.selected){
+                background: yellow;
             }
         </style>
 
@@ -15,6 +23,29 @@
         
     </template>
     <script>
-        Polymer({});
+        (function () {
+
+            var
+                on = window.on,
+                dom = window.dom;
+
+            Polymer({
+                attached: function () {
+                    on(this, 'click', function () {
+                        this.fire('selected');
+                    }.bind(this));
+                },
+
+                select: function (selected) {
+                    if(selected){
+                        this.classList.add('selected');
+                        //this.fire('selected');
+                    }else{
+                        this.classList.remove('selected');
+                        //this.fire('unselected');
+                    }
+                }
+            });
+        }());
     </script>
 </polymer-element>

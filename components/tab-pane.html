@@ -2,11 +2,14 @@
     <template>
         <style>
             :host {
-                display: block;
                 position: absolute;
                 background: #8c96c7;
                 height: auto;
                 padding: 5px;
+                display: none;
+            }
+            :host(.selected){
+                display: block;
             }
         </style>
 
@@ -14,6 +17,14 @@
         
     </template>
     <script>
-        Polymer({});
+        Polymer({
+            select: function (selected) {
+                if(selected){
+                    this.classList.add('selected');
+                }else{
+                    this.classList.remove('selected');
+                }
+            }
+        });
     </script>
 </polymer-element>
