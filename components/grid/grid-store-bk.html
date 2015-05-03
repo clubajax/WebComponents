@@ -1,0 +1,123 @@
+<polymer-element name="grid-store" hidden attributes="dataPropertyName restURL url">
+    <script>
+        (function () {
+            var
+                xhr = window.xhr,
+                on = window.on;
+
+            Polymer({
+                domReady: function () {
+                    // all child elements are ready on dom ready
+
+                    this.pagination = {};
+                    this.sort = {};
+
+                    if(this.dataPropertyName){
+                        this.data = window[this.dataPropertyName];
+                        console.log('data', this.data);
+                        // time out needed to prevent content flash
+                        setTimeout(function () {
+                            this.parseData(this.data);
+                        }.bind(this), 1);
+                    }
+                    else if(this.restURL){
+                        this.ajax = document.createElement('core-ajax');
+                        this.GET();
+                    }
+                    else if(this.url){
+                        this.get();
+                    }
+                },
+                
+                get: function () {
+                    xhr(this.url, function (data) {
+                        this.data = data;
+                        console.log('DATA', this.data);
+                        this.parseData(this.data);
+                    }.bind(this));
+                },
+
+                GET: function (url) {
+                    var ajaxHandle;
+                    this.data = [];
+                    this.ajax.url = url || this.restURL;
+                    this.ajax.handleAs = 'json';
+                    ajaxHandle = on(this.ajax, 'core-response', function(event){
+                        ajaxHandle.remove();
+                        this.data = event.detail.response;
+                        console.log('DATA', this.data);
+                        this.parseData(this.data);
+                    }.bind(this));
+
+                    this.ajax.go();
+                },
+
+
+                getUrl: function () {
+                    var url = this.restURL;
+                },
+
+
+                onPaginate: function (event) {
+                    console.log('onPaginate', event.detail.params);
+                    this.pagination.start = event.detail.params.start;
+                    this.pagination.count = event.detail.params.count;
+                },
+
+                onSort: function (event) {
+                    if(this.dataPropertyName){
+                        this.grid.render(this.memorySort(event), false);
+                    }
+                    else{
+                        console.log('url sort', event.detail);
+                    }
+                },
+
+                parseData: function (data) {
+
+                    this.data = data;
+                    this.items = data.items;
+                    this.orgItems = [].concat(this.items);
+
+                    var
+                        columns = Object.keys(this.items[0]);
+
+                    this.grid.render(this.items, columns);
+
+                    this.grid.fire('data', {data: this.data});
+
+                },
+
+                setGrid: function (grid) {
+                    this.grid = grid;
+                    this.grid.addEventListener('sort', this.onSort.bind(this));
+                    this.grid.addEventListener('pagination', this.onPaginate.bind(this));
+                },
+
+                memorySort: function (event) {
+                    var
+                        prop = event.detail.sort,
+                        dir = event.detail.dir,
+                        aLess = dir === 'desc' ? -1 : 1,
+                        bLess = dir === 'desc' ? 1 : -1;
+
+                    if(!prop && !dir){
+                        console.log('item.');
+                        return this.orgItems;
+                    }
+
+                    return this.items.sort(function(a, b){
+                        if(a[prop] < b[prop]){
+                            return aLess;
+                        }
+                        else if(a[prop] > b[prop]){
+                            return bLess;
+                        }
+                        return 0;
+                    });
+
+                }
+            });
+        }());
+    </script>
+</polymer-element>

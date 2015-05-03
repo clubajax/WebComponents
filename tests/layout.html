@@ -13,6 +13,7 @@
     <script src="../lib/on.js"></script>
     <script src="../lib/dom.js"></script>
     <script src="../lib/xhr.js"></script>
+    <script src="../lib/createComponent.js"></script>
 
     <link rel="import" href="/bower_components/polymer/polymer.html">
 
@@ -50,8 +51,8 @@
         <layout-column>
             <tab-container>
                 <tab-button>Tab 1</tab-button>
-                <tab-button class="selected">Tab 2</tab-button>
-                <tab-button >Tab 3</tab-button>
+                <tab-button >Tab 2</tab-button>
+                <tab-button class="selected">Tab 3</tab-button>
                 <tab-pane>tab 1 content goes here</tab-pane>
                 <tab-pane>
                     <h3>Today, Tesla introduces Tesla Energy, a suite of batteries for homes, businesses, and utilities fostering a clean energy ecosystem and helping wean the world off fossil fuels.</h3>
@@ -65,11 +66,11 @@
                 <tab-pane>
                     <grid-base>
                         <grid-store url="/data/gridTestData.json"></grid-store>
-                        <grid-click-handler></grid-click-handler>
-                        <grid-pagination></grid-pagination>
-                        <grid-scrollable></grid-scrollable>
-                        <grid-sortable></grid-sortable>
-                        <grid-selection></grid-selection>
+                        <!--<grid-click-handler></grid-click-handler>-->
+                        <!--<grid-pagination></grid-pagination>-->
+                        <!--<grid-scrollable></grid-scrollable>-->
+                        <!--<grid-sortable></grid-sortable>-->
+                        <!--<grid-selection></grid-selection>-->
                     </grid-base>
                 </tab-pane>
             </tab-container>
