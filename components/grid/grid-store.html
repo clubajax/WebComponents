@@ -15,10 +15,11 @@
         domReady: function () {
             this.pagination = {};
             this.sort = {};
-            console.log('this.children', this.children);
 
-            console.log('~domReady', this.url, this.getAttribute('url'));
-            return;
+            var
+                url = this.getAttribute('url'),
+                restURL = this.getAttribute('restURL');
+
             if(this.dataPropertyName){
                 this.data = window[this.dataPropertyName];
                 console.log('data', this.data);
@@ -31,12 +32,12 @@
                 this.ajax = document.createElement('core-ajax');
                 this.GET();
             }
-            else if(this.url){
-                this.get();
+            else if(url){
+                this.get(url);
             }
         },
-        get: function () {
-            xhr(this.url, function (data) {
+        get: function (url) {
+            xhr(url, function (data) {
                 this.data = data;
                 console.log('DATA', this.data);
                 this.parseData(this.data);
