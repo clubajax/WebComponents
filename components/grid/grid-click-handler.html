@@ -1,66 +1,64 @@
-<polymer-element name="grid-click-handler" hidden>
+<script>
+    (function () {
+        var
+            on = window.on,
+            dom = window.dom;
 
-    <script>
-        (function () {
-            var
-                on = window.on,
-                dom = window.dom;
+        createComponent({
+            tag: 'grid-click-handler',
+            setGrid: function (grid) {
+                this.grid = grid;
+                this.grid.addEventListener('render', this.handleClicks.bind(this));
+            },
 
-            Polymer({
-                setGrid: function (grid) {
-                    this.grid = grid;
-                    this.grid.addEventListener('render', this.handleClicks.bind(this));
-                },
+            onBodyClick: function (event) {
+                var
+                    index,
+                    item,
+                    emitEvent,
+                    cell = dom.ancestor(event.target, 'TD'),
+                    field = cell.getAttribute('data-field'),
+                    row = dom.ancestor(event.target, 'TR');
+                if(!row){ return; }
 
-                onBodyClick: function (event) {
-                    var
-                        index,
-                        item,
-                        emitEvent,
-                        cell = dom.ancestor(event.target, 'TD'),
-                        field = cell.getAttribute('data-field'),
-                        row = dom.ancestor(event.target, 'TR');
-                    if(!row){ return; }
+                index = +(row.getAttribute('data-index'));
+                item = this.grid.items[index];
 
-                    index = +(row.getAttribute('data-index'));
-                    item = this.grid.items[index];
+                emitEvent = {
+                    index: index,
+                    cell: cell,
+                    row: row,
+                    item: item,
+                    field: field,
+                    value: item[field],
+                };
 
+                console.log('row event', emitEvent);
+                this.grid.fire('row-click', emitEvent);
+            },
+
+            onHeaderClick: function (event) {
+                var
+                    cell = dom.ancestor(event.target, 'TH'),
+                    field = cell.getAttribute('data-field'),
                     emitEvent = {
-                        index: index,
-                        cell: cell,
-                        row: row,
-                        item: item,
                         field: field,
-                        value: item[field],
+                        cell: cell
                     };
 
-                    //console.log('row event', emitEvent);
-                    this.grid.fire('row-click', emitEvent);
-                },
+                this.grid.fire('header-click', emitEvent);
+            },
 
-                onHeaderClick: function (event) {
-                    var
-                        cell = dom.ancestor(event.target, 'TH'),
-                        field = cell.getAttribute('data-field'),
-                        emitEvent = {
-                            field: field,
-                            cell: cell
-                        };
-
-                    this.grid.fire('header-click', emitEvent);
-                },
-
-                handleClicks: function (event) {
-                    if(this.bodyHandle){
-                        this.bodyHandle.remove();
-                        this.headHandle.remove();
-                    }
-
-                    this.bodyHandle = on(event.detail.tbody, 'click', this.onBodyClick.bind(this));
-                    this.headHandle = on(event.detail.thead, 'click', this.onHeaderClick.bind(this));
+            handleClicks: function (event) {
+                if(this.bodyHandle){
+                    this.bodyHandle.remove();
+                    this.headHandle.remove();
                 }
-            });
-        }());
 
-    </script>
-</polymer-element>
+                this.bodyHandle = on(event.detail.tbody, 'click', this.onBodyClick.bind(this));
+                this.headHandle = on(event.detail.thead, 'click', this.onHeaderClick.bind(this));
+            }
+        });
+    }());
+
+</script>
