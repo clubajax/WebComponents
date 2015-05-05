@@ -6,6 +6,7 @@ grid-base{
     bottom: 0;
     left: 0;
     border: 2px solid #666;
+    border-top: 0;
 }
 grid-base table{
     border-collapse: collapse;
