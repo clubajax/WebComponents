@@ -28,7 +28,9 @@
 
                 this.fire('render', {table: this.table, thead: this.thead, tbody: this.tbody});
 
+                console.log('grid-render');
                 if(this.nextrendercallbacks){
+                    console.log('next callbacks...');
                     this.nextrendercallbacks.forEach(function (cb) {
                         cb();
                     });
@@ -83,37 +85,6 @@
                         }
                     }
                 }
-            }
-        });
-
-        return
-
-        Polymer({
-            publish:{
-                dataPropertyName:{
-                    value: '',
-                    reflect: true
-                }
-            },
-
-            attached: function () {
-                var i, contentNodes = this.$.groupNodes.getDistributedNodes();
-
-                if(contentNodes.length) {
-                    for(i = 0; i < contentNodes.length; i++){
-                        if(contentNodes[i].nodeType === 1 && contentNodes[i].setGrid){
-                            contentNodes[i].setGrid(this);
-                        }
-                    }
-                }
-            },
-
-
-
-
-
-            attributeChanged: function (attrName, oldVal, newVal) {
-                console.log('attributeChanged', attrName, oldVal, newVal);
             }
         });
     }());

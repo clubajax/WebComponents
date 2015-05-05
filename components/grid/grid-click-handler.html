@@ -40,13 +40,15 @@
             onHeaderClick: function (event) {
                 var
                     cell = dom.ancestor(event.target, 'TH'),
-                    field = cell.getAttribute('data-field'),
+                    field = cell && cell.getAttribute('data-field'),
                     emitEvent = {
                         field: field,
                         cell: cell
                     };
 
-                this.grid.fire('header-click', emitEvent);
+                if(cell) {
+                    this.grid.fire('header-click', emitEvent);
+                }
             },
 
             handleClicks: function (event) {

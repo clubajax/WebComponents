@@ -12,9 +12,9 @@
                 this.pagination = {};
                 this.sort = {};
 
-                var
-                    url = this.getAttribute('url'),
-                    restURL = this.getAttribute('restURL');
+                this.url = this.getAttribute('url');
+                this.restURL = this.getAttribute('restURL');
+                this.dataPropertyName = this.getAttribute('dataPropertyName');
 
                 if(this.dataPropertyName){
                     this.data = window[this.dataPropertyName];
@@ -27,8 +27,8 @@
                 else if(this.restURL){
                     throw new Error('Not implemented');
                 }
-                else if(url){
-                    this.get(url);
+                else if(this.url){
+                    this.get(this.url);
                 }
             },
 
@@ -57,12 +57,35 @@
 
             },
             onSort: function (event) {
-                if(this.dataPropertyName){
+                if(this.dataPropertyName || this.url){
                     this.grid.render(this.memorySort(event), false);
                 }
                 else{
                     console.log('url sort', event.detail);
                 }
+            },
+            memorySort: function (event) {
+                var
+                    prop = event.detail.sort,
+                    dir = event.detail.dir,
+                    aLess = dir === 'desc' ? -1 : 1,
+                    bLess = dir === 'desc' ? 1 : -1;
+
+                if(!prop && !dir){
+                    console.log('item.');
+                    return this.orgItems;
+                }
+
+                return this.items.sort(function(a, b){
+                    if(a[prop] < b[prop]){
+                        return aLess;
+                    }
+                    else if(a[prop] > b[prop]){
+                        return bLess;
+                    }
+                    return 0;
+                });
+
             },
             onPaginate: function (event) {
                 console.log('onPaginate', event.detail.params);

@@ -1,10 +1,10 @@
-grid-base.sortable::shadow table thead th{
+grid-base.sortable table thead th{
     cursor: pointer;
 }
-grid-base.sortable::shadow table thead th span{
+grid-base.sortable table thead th span{
     display: inline-block;
     margin-right: 12px;
 }
-grid-base.sortable::shadow table th:hover{
+grid-base.sortable table th:hover{
     background: #DCEAEF;
 }
