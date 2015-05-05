@@ -3,4 +3,5 @@ pop-up{
     display: none;
     border: 1px solid #666;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    background: #fff;
 }

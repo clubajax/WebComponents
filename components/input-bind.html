@@ -1,0 +1,37 @@
+<style>
+
+</style>
+<template id="input-bind-template">
+    <input data-attach="input">
+</template>
+<script>
+    (function(){
+
+        var on = window.on;
+
+        createComponent({
+            tag: 'input-bind',
+            templateId: 'input-bind-template',
+            domReady: function () {
+
+                var value = this.getAttribute('value');
+                if(value !== undefined && value !== null){
+                    this.input.value = value;
+                }
+                this.boundWidget = this.getAttribute('data-bind-to');
+                if(this.boundWidget){
+                    this.boundWidget = document.getElementById(this.boundWidget);
+                }
+
+                on(this.boundWidget, 'change', function (event) {
+                    this.input.value = event.detail.value;
+                }.bind(this));
+
+                on(this.input, 'keyup', function (event) {
+                    this.boundWidget.setValue(this.input.value);
+                }.bind(this))
+
+            }
+        });
+    }());
+</script>

@@ -30,6 +30,21 @@
         createComponent({
             tag: 'range-slider',
             templateId: 'range-slider-template',
+
+            emitValue: function (percentage){
+                this.fire('change', {value: Math.ceil(percentage * 100)});
+            },
+
+            setValue: function(value){
+                var
+                    width = dom.box(this.slot).width,
+                    p = value / 100,
+                    x = p * width;
+                console.log('x', x, p);
+
+                this.handle.style.left = x + 'px';
+            },
+
             domReady: function () {
                 var
                     handle = this.handle,
@@ -43,7 +58,9 @@
 
                 moveHandle = on(document, 'mousemove', function (event) {
                     //console.log('e', event);
-                    var x = event.clientX - slotBox.left;
+                    var
+                        percentage,
+                        x = event.clientX - slotBox.left;
 
                     if(event.clientX < slotBox.left){
                         console.log('event.clientX', event.clientX, slotBox.left);
@@ -54,6 +71,10 @@
                     }
 
                     handle.style.left = x + 'px';
+
+                    percentage = x === 0 ? 0 : x / slotBox.width;
+
+                    self.emitValue(percentage);
                 });
                 on(window, 'mouseup', function (event) {
                     moveHandle.pause();

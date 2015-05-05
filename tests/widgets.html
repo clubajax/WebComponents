@@ -34,8 +34,8 @@
     <link rel="import" href="/components/grid/grid-selection.html">
 
     <link rel="import" href="/components/range-slider.html">
-
     <link rel="import" href="/components/color-picker.html">
+    <link rel="import" href="/components/input-bind.html">
 
 
 </head>
@@ -60,7 +60,8 @@
                 </tab-pane>
                 <tab-pane title="Widgets" class="selected">
                     <color-picker></color-picker>
-                    <range-slider></range-slider>
+                    <range-slider id="slider"></range-slider>
+                    <input-bind data-bind-to="slider"></input-bind>
                 </tab-pane>
                 <tab-pane title="Grid">
                     <grid-base>
