@@ -10,7 +10,7 @@
         */
         font-style: italic;
     }
-    shady-card::shadow h2{
+    shady-card::shadow h1{
         /*
             ::shadow accesses trees one level deep
         */
@@ -35,10 +35,10 @@
                 box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
             }
 
-            h2{
+            h1{
                 /*
-                    h2 is accessed normally, as it is outside of <content>
-                    Note though, this is still in shadow dom, so h2 outside
+                    h1 is accessed normally, as it is outside of <content>
+                    Note though, this is still in shadow dom, so h1 outside
                     of this element is not affected
                 */
                 background: #5b5987;
@@ -46,8 +46,9 @@
                 padding: 3px 6px;
                 color: #fff;
                 border-radius: 4px;
+                font-size: 16px;
             }
-            :host-context(.right-column) h2{
+            :host-context(.right-column) h1{
                 /*
                     :host-context is a parent selector
                 */
@@ -65,13 +66,13 @@
 
         </style>
 
-        <h2>Shady card</h2>
+        <h1>Shady card</h1>
         <section>
             <!--
                 the content tag contains our children from markup
                 the sel attribute is used to filter and order elements
             -->
-            <content></content>
+            <content sel="p"></content>
             <content sel="button"></content>
         </section>
 

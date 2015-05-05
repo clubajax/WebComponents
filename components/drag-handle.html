@@ -1,0 +1,30 @@
+<style>
+    drag-handle{
+        display: block;
+        width: 10px;
+        margin-left: -5px;
+        height: 15px;
+        background: #fff;
+        border: 1px solid #666;
+        position: absolute;
+        top: -7px;
+        left: 0;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    drag-handle:hover{
+        background: #b2d6ff;
+    }
+</style>
+
+<template id="drag-handle-template">
+    <div></div>
+</template>
+<script>
+    (function(){
+        createComponent({
+            tag: 'drag-handle',
+            templateId: 'drag-handle-template'
+        });
+    }());
+</script>

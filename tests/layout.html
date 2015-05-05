@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Layout - Web Components - Club AJAX</title>
+    <title>Shady - Web Components - Club AJAX</title>
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
@@ -23,54 +23,16 @@
     <link rel="import" href="/components/layout-column.html">
     <link rel="import" href="/components/tab-container.html">
     <link rel="import" href="/components/tab-pane.html">
-    <link rel="import" href="/components/color-picker.html">
-
-    <link rel="import" href="/components/grid/grid-base.html">
-    <link rel="import" href="/components/grid/grid-pagination.html">
-    <link rel="import" href="/components/grid/grid-scrollable.html">
-    <link rel="import" href="/components/grid/grid-sortable.html">
-    <link rel="import" href="/components/grid/grid-click-handler.html">
-    <link rel="import" href="/components/grid/grid-store.html">
-    <link rel="import" href="/components/grid/grid-selection.html">
-
-    <link rel="import" href="/components/hello-world.html">
 
 
 </head>
 <body class="layout-page">
     <layout-header>
-        <h1>Layout - Web Components - Club AJAX</h1>
+        <h1>Shady - Web Components - Club AJAX</h1>
     </layout-header>
     <layout-body>
-        <layout-column>
-            <hello-world>and goodbye.</hello-world>
-        </layout-column>
-        <layout-column>
-            <tab-container>
-                <tab-pane title="Tesla">
-                    <h3>Today, Tesla introduces Tesla Energy, a suite of batteries for homes, businesses, and utilities fostering a clean energy ecosystem and helping wean the world off fossil fuels.</h3>
-                    <p>Tesla is not just an automotive company, it’s an energy innovation company. Tesla Energy is a critical step in this mission to enable zero emission power generation.</p>
-                    <p>With Tesla Energy, Tesla is amplifying its efforts to accelerate the move away from fossil fuels to a sustainable energy future with Tesla batteries, enabling homes, business, and utilities to store sustainable and renewable energy to manage power demand, provide backup power and increase grid resilience.</p>
-                    <p>Tesla is already working with utilities and other renewable power partners around the world to deploy storage on the grid to improve resiliency and cleanliness of the grid as a whole.</p>
-                    <p>Powerwall increases the capacity for a household’s solar consumption, while also offering backup functionality during grid outages.</p>
-                    <p>Powerwall is available in 10kWh, optimized for backup applications or 7kWh optimized for daily use applications. Both can be connected with solar or grid and both can provide backup power. The 10kWh Powerwall is optimized to provide backup when the grid goes down, providing power for your home when you need it most. When paired with solar power, the 7kWh Powerwall can be used in daily cycling to extend the environmental and cost benefits of solar into the night when sunlight is unavailable.</p>
-                    <p>Tesla’s selling price to installers is $3500 for 10kWh and $3000 for 7kWh. (Price excludes inverter and installation.) Deliveries begin in late Summer.</p>
-                </tab-pane>
-                <tab-pane title="Widgets" class="selected">
-                    <color-picker></color-picker>
-                </tab-pane>
-                <tab-pane title="Grid">
-                    <grid-base>
-                        <grid-store url="/data/gridTestData.json"></grid-store>
-                        <grid-click-handler></grid-click-handler>
-                        <grid-pagination></grid-pagination>
-                        <grid-scrollable></grid-scrollable>
-                        <grid-sortable></grid-sortable>
-                        <grid-selection></grid-selection>
-                    </grid-base>
-                </tab-pane>
-            </tab-container>
-        </layout-column>
+        <layout-column class="left-column"></layout-column>
+        <layout-column class="right-column"></layout-column>
 
     </layout-body>
     <layout-footer>

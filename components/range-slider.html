@@ -1,0 +1,75 @@
+<link href="drag-handle.html" rel="import">
+<style>
+    range-slider{
+        display: block;
+        margin: 20px;
+    }
+    .drag-slot{
+        position: relative;
+        display: block;
+        height: 3px;
+        border: 1px solid #666;
+        background: #fff;
+        width: 100%;
+    }
+</style>
+<template id="range-slider-template">
+    <div data-attach="slot" class="drag-slot">
+        <drag-handle data-attach="handle"></drag-handle>
+    </div>
+</template>
+
+<script>
+
+    (function(){
+
+        var
+            on = window.on,
+            dom = window.dom;
+
+        createComponent({
+            tag: 'range-slider',
+            templateId: 'range-slider-template',
+            domReady: function () {
+                var
+                    handle = this.handle,
+                    slot = this.slot,
+                    slotBox,
+                    handleBox,
+                    moveHandle,
+                    isDown = false,
+                    isDragging = false,
+                    self = this;
+
+                moveHandle = on(document, 'mousemove', function (event) {
+                    //console.log('e', event);
+                    var x = event.clientX - slotBox.left;
+
+                    if(event.clientX < slotBox.left){
+                        console.log('event.clientX', event.clientX, slotBox.left);
+                        x = 0;
+                    }
+                    if(event.clientX > slotBox.width + slotBox.left){
+                        x = slotBox.width;
+                    }
+
+                    handle.style.left = x + 'px';
+                });
+                on(window, 'mouseup', function (event) {
+                    moveHandle.pause();
+                });
+                on(this.handle, 'mousedown', function (event) {
+                    isDown = true;
+                    moveHandle.resume();
+                    slotBox = dom.box(slot);
+                    handleBox = dom.box(handle);
+                    event.preventDefault();
+                    return false;
+                });
+
+                moveHandle.pause();
+            }
+        });
+    }());
+
+</script>
