@@ -1,0 +1,79 @@
+<style shim-shadowdom>
+    /*
+        This style tag lives outside of the shadow DOM.
+        hence, we access the element with shady-card, and not :host
+    */
+    shady-card /deep/ p{
+        /*
+            /deep/ accesses elements and overwrites styles
+            inside the shadow DOM
+        */
+        font-style: italic;
+    }
+    shady-card::shadow h2{
+        /*
+            ::shadow accesses trees one level deep
+        */
+        font-style: italic;
+    }
+
+</style>
+
+<polymer-element name="shady-card" noscript>
+    <template>
+        <style>
+            :host{
+                /*
+                    :host is the web component, in this case, shady-card
+                */
+                display: block;
+                padding: 5px;
+                background: white;
+                margin: 10px;
+                width: 300px;
+                border-radius: 5px;
+                box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            }
+
+            h2{
+                /*
+                    h2 is accessed normally, as it is outside of <content>
+                    Note though, this is still in shadow dom, so h2 outside
+                    of this element is not affected
+                */
+                background: #5b5987;
+                margin: 0;
+                padding: 3px 6px;
+                color: #fff;
+                border-radius: 4px;
+            }
+            :host-context(.right-column) h2{
+                /*
+                    :host-context is a parent selector
+                */
+                background: #87545b;
+            }
+            section{
+                padding: 10px;
+            }
+            ::content p{
+                /*
+                    The ::content selector accesses elements in <content>
+                */
+                font-weight: bold;
+            }
+
+        </style>
+
+        <h2>Shady card</h2>
+        <section>
+            <!--
+                the content tag contains our children from markup
+                the sel attribute is used to filter and order elements
+            -->
+            <content></content>
+            <content sel="button"></content>
+        </section>
+
+    </template>
+</polymer-element>

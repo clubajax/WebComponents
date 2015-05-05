@@ -6,16 +6,48 @@
     <title>Shady - Web Components - Club AJAX</title>
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
     <link href="../styles/fontIcons/style.css" rel="stylesheet">
     <link href="../styles/page.css" rel="stylesheet">
 
+    <script src="../lib/on.js"></script>
+    <script src="../lib/dom.js"></script>
+    <script src="../lib/xhr.js"></script>
+    <script src="../lib/createComponent.js"></script>
+
     <link rel="import" href="/bower_components/polymer/polymer.html">
 
-    <link rel="import" href="/components/hello-world.html">
+    <link rel="import" href="/components/layout-body.html">
+    <link rel="import" href="/components/layout-header.html">
+    <link rel="import" href="/components/layout-footer.html">
+    <link rel="import" href="/components/layout-column.html">
+    <link rel="import" href="/components/tab-container.html">
+    <link rel="import" href="/components/tab-pane.html">
+
+    <link rel="import" href="/components/shady-card.html">
 
 </head>
-<body>
-    <h1>Shady - Web Components - Club AJAX</h1>
-    <hello-world>and goodbye.</hello-world>
+<body class="layout-page">
+    <layout-header>
+        <h1>Shady - Web Components - Club AJAX</h1>
+    </layout-header>
+    <layout-body>
+        <layout-column class="left-column">
+            <shady-card>
+                <button>Click Me</button>
+                <p>YO</p>
+            </shady-card>
+        </layout-column>
+        <layout-column class="right-column">
+            <shady-card>
+                <button>Don't Click Me</button>
+                <p>WAT</p>
+            </shady-card>
+        </layout-column>
+
+    </layout-body>
+    <layout-footer>
+        &copy Club AJAX 2015
+    </layout-footer>
 </body>
 </html>
