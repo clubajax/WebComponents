@@ -1,4 +1,4 @@
-grid-base::shadow table tbody tr.selected,
-grid-base::shadow table tbody tr.selected:nth-child(even){
+grid-base table tbody tr.selected,
+grid-base table tbody tr.selected:nth-child(even){
     background: #bfd6eb;
 }
