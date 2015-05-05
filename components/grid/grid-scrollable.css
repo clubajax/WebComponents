@@ -1,16 +1,16 @@
 grid-base.scrollable{
-    position: relative;
+    
 }
-grid-base.scrollable::shadow table{
+grid-base.scrollable table{
     box-sizing: content-box;
     overflow: auto;
     display: block;
 }
-grid-base.scrollable::shadow table thead,
-grid-base.scrollable::shadow table tbody{
+grid-base.scrollable table thead,
+grid-base.scrollable table tbody{
     display: block;
 }
-grid-base.scrollable::shadow table thead{
+grid-base.scrollable table thead{
     box-sizing: border-box;
     position: absolute;
     width: 100%;
@@ -18,17 +18,17 @@ grid-base.scrollable::shadow table thead{
     top: 2px;
 }
 
-grid-base.scrollable::shadow table th{
+grid-base.scrollable table th{
     position: relative;
 }
-grid-base.scrollable::shadow table th.desc:after{
+grid-base.scrollable table th.desc:after{
 
 }
-grid-base.scrollable::shadow table th.asc:after{
+grid-base.scrollable table th.asc:after{
     transform: rotate(180deg);
 }
-grid-base.scrollable::shadow table th.desc:after,
-grid-base.scrollable::shadow table th.asc:after{
+grid-base.scrollable table th.desc:after,
+grid-base.scrollable table th.asc:after{
     content: '\25B2';
     position: absolute;
     top: 4px;

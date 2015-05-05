@@ -1,19 +1,27 @@
-grid-base::shadow table{
+grid-base{
+    display: block;
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+grid-base table{
     border-collapse: collapse;
     border: 2px solid #666;
     width: 100%;
     height: 100%;
 }
-grid-base::shadow table th{
+grid-base table th{
     background: #eee;
     color: #333;
 }
-grid-base::shadow table th,
-grid-base::shadow table td{
+grid-base table th,
+grid-base table td{
     border: 1px solid #ccc;
     padding: 5px;
 }
 
-grid-base::shadow table tbody tr:nth-child(even){
+grid-base table tbody tr:nth-child(even){
     background: #F2F5F9;
 }

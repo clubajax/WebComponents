@@ -1,0 +1,71 @@
+grid-base.paginates{
+    bottom: 30px;
+}
+grid-pagination{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -30px;
+    left: 0;
+    height: 30px;
+}
+.paginator{
+    border: 1px solid #ccc;
+    background: #eee;
+}
+
+.paginator-total{
+    padding: 3px 0 3px 3px;
+}
+.paginator-incrementor{
+    position: absolute;
+    top:3px;
+    right: 15px;
+    padding-right: 5px;
+    text-align: right;
+    background: #eee;
+}
+.paginator-step{
+    padding: 1px 3px;
+    cursor: pointer;
+}
+
+.paginator-step:hover{
+    background-color: #C2E4E8;
+}
+
+.paginator-step.nav{
+    display: inline-block;
+    width: 6px;
+    height: 10px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+.paginator-step.nav:hover{
+    opacity: 1;
+}
+.paginator-step.disabled,
+.paginator-step.disabled:hover{
+    cursor: default;
+    color: #ccc;
+    background-color: transparent;
+}
+.paginator-step.nav.disabled,
+.paginator-step.nav.disabled:hover{
+    cursor: default;
+    background-color: transparent;
+    opacity: 0.2;
+}
+
+.paginator-step.first:before{
+    content: '\276C \276C';
+}
+.paginator-step.last:before{
+    content: '\276D \276D';
+}
+.paginator-step.next:before{
+    content: '\276D';
+}
+.paginator-step.prev:before{
+    content: '\276C';
+}

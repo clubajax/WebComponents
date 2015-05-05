@@ -61,9 +61,6 @@
                         paneNodes = Array.prototype.slice.call(this.$.paneNodes.getDistributedNodes()),
                         btnNodes = Array.prototype.slice.call(this.$.btnNodes.getDistributedNodes()),
                         selectedIndex = getInitialSelected(btnNodes, paneNodes);
-                    console.log('btnNodes', btnNodes);
-                    console.log('paneNodes', paneNodes);
-                    console.log('selected', selectedIndex);
 
                     this.btnHandles = [];
                     for(i = 0; i < btnNodes.length; i++){
@@ -73,8 +70,6 @@
                     this.paneNodes = paneNodes;
                     this.btnNodes = btnNodes;
                     this.selectedIndex = selectedIndex;
-
-
                 },
 
                 domReady: function () {
@@ -82,8 +77,6 @@
                     for(i = 0; i < this.paneNodes.length; i++){
                         this.paneNodes[i].setTop(menuHeight);
                     }
-
-
                     this.onSelelected(this.btnNodes[this.selectedIndex]);
                 },
 
@@ -92,10 +85,6 @@
                         node = event.target || event,
                         selectedIndex = getSelectedIndex(node, this.btnNodes);
 
-                    if(selectedIndex === this.selectedIndex){
-                        console.log('same', selectedIndex , this.selectedIndex);
-                        //return;
-                    }
                     this.paneNodes[this.selectedIndex].select(false);
                     this.btnNodes[this.selectedIndex].select(false);
                     this.selectedIndex = selectedIndex;
