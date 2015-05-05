@@ -15,7 +15,7 @@ grid-base.scrollable table thead{
     position: absolute;
     width: 100%;
     overflow: hidden;
-    top: 2px;
+    top: 0px;
 }
 
 grid-base.scrollable table th{

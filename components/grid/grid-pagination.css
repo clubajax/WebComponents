@@ -1,11 +1,11 @@
-grid-base.paginates{
-    bottom: 30px;
+grid-base.paginates table{
+
 }
 grid-pagination{
     display: block;
     position: absolute;
     right: 0;
-    bottom: -30px;
+    bottom: -8px;
     left: 0;
     height: 30px;
 }
