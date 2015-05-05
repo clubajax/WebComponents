@@ -1,0 +1,81 @@
+<link href="pop-up.html" rel="import">
+<style>
+    color-picker{
+        display: inline-block;
+        border: 1px solid #999;
+        padding: 0 0 2px 2px;
+        line-height: 0;
+    }
+    .color-picker-pop-up{
+        padding: 0 0 2px 2px;
+        line-height: 0;
+    }
+    .swatch{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: red;
+        margin: 2px 2px 0 0 ;
+        cursor: pointer;
+    }
+</style>
+<template id="color-picker-template">
+    <div data-attach="swatch" class="swatch"></div>
+</template>
+<script>
+    (function () {
+
+        var
+            defaultColors = 'white,black,red,blue,yellow,orange,cyan,chartreuse,drakgreen',
+            on = window.on;
+
+        createComponent({
+            tag: 'color-picker',
+            templateId:'color-picker-template',
+            domReady: function () {
+                this.colors = (this.getAttribute('colors') || defaultColors).split(',');
+                this.createPopup();
+            },
+            createPopup: function () {
+                var content = dom('div', {css:'color-picker-pop-up'});
+                this.colors.forEach(function (color, i) {
+                    dom('div', {css:'swatch', style:{backgroundColor:color}}, content);
+                    if((i + 1) % 3 === 0){
+                        dom('br', {}, content);
+                    }
+                });
+                this.popup = document.createElement('pop-up');
+                this.popup.appendChild(content);
+                document.body.appendChild(this.popup);
+                this.popupHandle = on(content, 'click', this.onPopupClick.bind(this));
+            },
+            attached: function () {
+                on(this, 'click', this.onClick.bind(this));
+            },
+            onPopupClick: function (event) {
+                var color = event.target.style.backgroundColor;
+                this.swatch.style.backgroundColor = color;
+                this.fire('value', {color: color});
+                this.close();
+            },
+
+            open: function () {
+                this.popup.open(this);
+                this.isOpen = true;
+            },
+
+            close: function () {
+                this.popup.close();
+                this.isOpen = false;
+            },
+
+            onClick: function (event) {
+                if(this.popup.isOpen){
+                    this.close();
+                }else{
+                    this.open();
+                }
+            }
+        });
+    }());
+</script>

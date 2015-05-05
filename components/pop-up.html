@@ -1,0 +1,36 @@
+<link href="pop-up.css" rel="stylesheet">
+<style>
+
+</style>
+<template id="pop-up-template"></template>
+<script>
+    (function () {
+
+        var
+            on = window.on,
+            dom = window.dom;
+
+        createComponent({
+            tag: 'pop-up',
+            templateId: 'pop-up-template',
+            isOpen: false,
+            open: function (btn) {
+                var box = dom.box(btn);
+                dom.style(this, {
+                    display: 'block',
+                    top: box.top + box.height + 5,
+                    left: box.left
+                });
+                this.offHandle = on(this, 'clickoff', this.close.bind(this));
+                this.isOpen = true;
+            },
+            close: function () {
+                this.style.display = '';
+                if(this.offHandle){
+                    this.offHandle.remove();
+                }
+                this.isOpen = false;
+            }
+        });
+    }());
+</script>

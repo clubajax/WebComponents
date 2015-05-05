@@ -21,10 +21,9 @@
     <link rel="import" href="/components/layout-header.html">
     <link rel="import" href="/components/layout-footer.html">
     <link rel="import" href="/components/layout-column.html">
-
     <link rel="import" href="/components/tab-container.html">
-
     <link rel="import" href="/components/tab-pane.html">
+    <link rel="import" href="/components/color-picker.html">
 
     <link rel="import" href="/components/grid/grid-base.html">
     <link rel="import" href="/components/grid/grid-pagination.html">
@@ -48,7 +47,6 @@
         </layout-column>
         <layout-column>
             <tab-container>
-                <tab-pane title="Tab 1">tab 1 content goes here</tab-pane>
                 <tab-pane title="Tesla">
                     <h3>Today, Tesla introduces Tesla Energy, a suite of batteries for homes, businesses, and utilities fostering a clean energy ecosystem and helping wean the world off fossil fuels.</h3>
                     <p>Tesla is not just an automotive company, it’s an energy innovation company. Tesla Energy is a critical step in this mission to enable zero emission power generation.</p>
@@ -57,6 +55,9 @@
                     <p>Powerwall increases the capacity for a household’s solar consumption, while also offering backup functionality during grid outages.</p>
                     <p>Powerwall is available in 10kWh, optimized for backup applications or 7kWh optimized for daily use applications. Both can be connected with solar or grid and both can provide backup power. The 10kWh Powerwall is optimized to provide backup when the grid goes down, providing power for your home when you need it most. When paired with solar power, the 7kWh Powerwall can be used in daily cycling to extend the environmental and cost benefits of solar into the night when sunlight is unavailable.</p>
                     <p>Tesla’s selling price to installers is $3500 for 10kWh and $3000 for 7kWh. (Price excludes inverter and installation.) Deliveries begin in late Summer.</p>
+                </tab-pane>
+                <tab-pane title="Widgets" class="selected">
+                    <color-picker></color-picker>
                 </tab-pane>
                 <tab-pane title="Grid">
                     <grid-base>
