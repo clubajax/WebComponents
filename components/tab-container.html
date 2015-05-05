@@ -1,3 +1,4 @@
+<link rel="import" href="tab-button.html">
 <polymer-element name="tab-container">
     <template>
         <style>
@@ -32,12 +33,9 @@
                 on = window.on,
                 dom = window.dom;
 
-            function getInitialSelected(btnNodes, paneNodes){
+            function getInitialSelected(paneNodes){
                 var i;
-                for(i = 0; i < btnNodes.length; i++){
-                    if(btnNodes[i].classList.contains('selected')){
-                        return i;
-                    }
+                for(i = 0; i < paneNodes.length; i++){
                     if(paneNodes[i].classList.contains('selected')){
                         return i;
                     }
@@ -54,13 +52,25 @@
                 return 0;
             }
 
+            function addButtons(parentNode, paneNodes, selectedIndex){
+                var i, title, btn, btns = [];
+                for(i = 0; i < paneNodes.length; i++){
+                    title = paneNodes[i].getAttribute('title');
+                    btn = document.createElement('tab-button');
+                    btn.innerHTML = title;
+                    parentNode.appendChild(btn);
+                    btns.push(btn);
+                }
+                return btns;
+            }
+
             Polymer({
                 attached: function () {
                     var
                         i,
                         paneNodes = Array.prototype.slice.call(this.$.paneNodes.getDistributedNodes()),
-                        btnNodes = Array.prototype.slice.call(this.$.btnNodes.getDistributedNodes()),
-                        selectedIndex = getInitialSelected(btnNodes, paneNodes);
+                        selectedIndex = getInitialSelected(paneNodes),
+                        btnNodes = addButtons(this.$.menu, paneNodes, selectedIndex);
 
                     this.btnHandles = [];
                     for(i = 0; i < btnNodes.length; i++){
